@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  retail_db:
+    image: postgres:15
+    container_name: retail_data_warehouse
+    environment:
+      POSTGRES_USER: ${DB_USER:-data_engineer}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-supersecurepassword123}
+      POSTGRES_DB: ${DB_NAME:-retail_warehouse}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
